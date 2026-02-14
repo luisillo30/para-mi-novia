@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mi carta 💌</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <div class="nav">
+      <a class="pill" href="index.html">← Inicio</a>
+      <a class="pill" href="fotos.html">📸 Fotos</a>
+      <div class="pill">💌 <strong>Carta</strong></div>
+    </div>
+
+    <div class="card" id="locked">
+      <h2>Uy 😈</h2>
+      <p>
+        Esta parte está bloqueada. Primero hay que completar el cuestionario.
+      </p>
+      <div class="btnrow">
+        <a class="btn" href="quiz.html">Ir al cuestionario →</a>
+      </div>
+    </div>
+
+    <div class="card" id="letter" style="display:none;">
+      <h>Como expresar algo tan grande como lo que siento por ti?</h2>
+      <p>
+        <br>
+        La respuesta es corta no se puede, pero lo puedo intentar...
+        <br><br>
+        Natalia gracias, gracias por siempre hacerme reir, por siemspre esperarme para hablar, por darme ese amor que tanto necesito de ti. Tu sabes que mi fuerte no es escribir pero en un dia tan significativo para mi lo tengo que intentar. Este dia es importante para mi porque hace dos años decubri la gran persona que eres, descubri que no hay nadie mas que quiera a mi lado, nadie mas con quien quiera despertar todas las mañanas y desirte siempre lo mucho que te amo, no hay nadie mas. Eres mi pilar, mi confidente, mi comadre chismosa, eres mi mejor amiga, eres mi amor, pero sobre todo lo que mas deseo que seas es mi compañera de vida. Quiero verte creser, superarte y siempre estar a tu lado para apoyarte, quiero ser grande junto a ti, cuidarte y respetarte y tratar de cada dia ser mejor persona por ti, porque aunque despues de tanto decirlo puede que pierda impacto yo siempre lo dire y eso es: TE AMO. <br> Yo se que no soy perfecto y se que nunca lo sere pero mi meta a tu lado siempre va a ser mejorar y ser mejor persona dia a dia, por eso te pido pasiencia te pido que me acompañes en mi proceso de ser mejor cada dia, porque por ti estoy dispuesto a todo, a cambiar todos mis defectos (aunque sean muchos). <br> Yo se que no soy el mejor poeta y que quisa esta carta no es la mejor que te e escrito. Lo que importa es que sepas que TE AMO y que siempre te voy a cuidar y amar. Gracias por ser la mujer perfecta para mi. <br><br> 
+<strong>Con amor Damian</strong></p>
+
+      <div class="btnrow">
+        <button id="btnReset" title="Solo si quieres reiniciar el quiz (opcional)">Volver al inicio</button>
+      </div>
+
+      <div class="footer">
+      </div>
+    </div>
+
+  </div>
+
+<script>
+  const locked = document.getElementById("locked");
+  const letter = document.getElementById("letter");
+
+  // Si llega con ?ok=1 (desde el quiz), desbloquea y guarda.
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("ok") === "1") {
+    try { localStorage.setItem("quiz_passed", "yes"); } catch(e) {}
+  }
+
+  let passed = false;
+  try { passed = localStorage.getItem("quiz_passed") === "yes"; } catch(e) { passed = false; }
+
+  if (passed){
+    locked.style.display = "none";
+    letter.style.display = "block";
+  }
+
+  document.getElementById("btnReset")?.addEventListener("click", ()=>{
+    try { localStorage.removeItem("quiz_passed"); } catch(e) {}
+    window.location.href = "carta.html";
+  });
+</script>
+
+</body>
+</html>
